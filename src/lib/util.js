@@ -130,3 +130,23 @@ export const urlEncode = (uri) => {
 export const urlDecode = (encodedUri) => {
   return decodeURIComponent(encodedUri);
 };
+
+export const countCharacters = (text) => {
+  return text.length;
+};
+
+export const countWords = (text) => {
+  return text.match(/(\w+)/g).length;
+};
+
+export const alphaNumeric = () => {
+  return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+};
+
+export const randomAlphaNumeric = (length, data) => {
+  let text = "";
+  for (let i = 0; i < length; i++) {
+    text += data.charAt(Math.floor(Math.random() * data.length));
+  }
+  return text;
+};

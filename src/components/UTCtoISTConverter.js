@@ -49,8 +49,10 @@ export default function UTCtoISTConverter() {
       &nbsp; &nbsp;
       <Button
         disabled={textForOp === ""}
-        variant="light"
+        // variant="light"
+        style={{ backgroundColor: "#c3073f", border: "none" }}
         type="submit"
+        className="app-button"
         onClick={() => {
           setEncodeResp(dateConverter(textForOp));
           setButtonClicked(true);

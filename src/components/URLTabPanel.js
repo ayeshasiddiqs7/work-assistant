@@ -2,7 +2,7 @@ import "../App.css";
 import { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { FaCopy } from "react-icons/fa";
+import { FaCopy, FaCheck } from "react-icons/fa";
 import { urlEncode, urlDecode } from "../lib/util";
 
 export default function URLTabPanel({
@@ -57,7 +57,9 @@ export default function URLTabPanel({
       <Button
         disabled={textForOp === ""}
         // variant={operation === "encode" ? "warning" : "success"}
-        variant="light"
+        // variant="light"
+        style={{ backgroundColor: "#c3073f", border: "none" }}
+        className="app-button"
         onClick={() => {
           setEncodeResp(
             operation === "encode" ? urlEncode(textForOp) : urlDecode(textForOp)
@@ -90,16 +92,20 @@ export default function URLTabPanel({
             />
           </Form.Group>
           {textCopied ? (
-            <Alert variant="success">Copied to clipdboard!</Alert>
-          ) : null}
-          <CopyToClipboard text={encodeResp} onCopy={() => setTextCopied(true)}>
-            <Button
-              // variant={operation === "encode" ? "warning" : "success"}
-              variant="light"
-            >
-              <FaCopy /> Copy
+            <Button variant="success">
+              <FaCheck />
+              &nbsp; Copied
             </Button>
-          </CopyToClipboard>
+          ) : (
+            <CopyToClipboard
+              text={encodeResp}
+              onCopy={() => setTextCopied(true)}
+            >
+              <Button variant="light">
+                <FaCopy /> Copy
+              </Button>
+            </CopyToClipboard>
+          )}
 
           <br />
           <br />

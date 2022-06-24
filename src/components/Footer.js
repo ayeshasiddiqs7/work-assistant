@@ -35,7 +35,13 @@ export default function Footer() {
         </a>{" "}
       </span>
       <br />
-      <span style={{ lineHeight: "3em" }}>{uiInfo.footer.footerInfo}</span>
+      <span style={{ lineHeight: "3em" }}>
+        {uiInfo.footer.footerInfo} |{" "}
+        <span style={{ fontFamily: "'Cookie', cursive", fontSize: "25px" }}>
+          {uiInfo.footer.footerInfoName}{" "}
+        </span>
+        | <span>{uiInfo.footer.footerInfoTitle} </span>
+      </span>
     </div>
   );
 }

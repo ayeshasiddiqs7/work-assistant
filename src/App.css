@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background: black;
 }
 
 .App-logo {
@@ -44,7 +45,7 @@
 
 .App-footer {
   height: 12em;
-  background-color: #c3073f;
+  background-color: #c3073f; /* #DA7B93; */
   color: white;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -55,11 +56,50 @@
 }
 
 .headerWrapper {
-  background-color: #c3073f;
+  background-color: #c3073f; /* #DA7B93; */
   color: white;
 }
 
 .app-ruler {
   border-top: 8px solid #bbb;
   border-radius: 5px;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.blue-input-field {
+  width: 25%;
+  background: #eff9ff;
+}
+
+.form-group {
+  margin-left: 10%;
+  padding-right: 10%;
+}
+
+.generatedUUIDs {
+  max-height: 25em;
+  overflow-y: scroll;
+}
+
+li.nav-item > button,
+li.nav-item > button:hover {
+  color: #eff9ff;
+
+}
+
+/* li.nav-item > button:hover {
+  border-bottom: 5px #c3073f solid;
+
+} */
+
+.app-button:focus {
+  box-shadow: none;
+  border: none;
+}
+
+.number-font {
+  font-family: Optima, sans-serif;
 }
