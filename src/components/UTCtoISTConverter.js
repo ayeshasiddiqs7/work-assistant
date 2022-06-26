@@ -44,7 +44,7 @@ export default function UTCtoISTConverter() {
           setTextForOp("");
         }}
       >
-        Clear out
+        Clear
       </Button>
       &nbsp; &nbsp;
       <Button

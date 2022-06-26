@@ -1,9 +1,11 @@
 import "../App.css";
 import { useState, useEffect } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { FaCopy, FaCheck } from "react-icons/fa";
+import { FaCopy } from "react-icons/fa";
 import { urlEncode, urlDecode } from "../lib/util";
+import { BsCheck2All } from "react-icons/bs";
+import ReactTooltip from "react-tooltip";
 
 export default function URLTabPanel({
   operation,
@@ -51,13 +53,11 @@ export default function URLTabPanel({
           setTextForOp("");
         }}
       >
-        Clear out
+        Clear
       </Button>
       &nbsp; &nbsp;
       <Button
         disabled={textForOp === ""}
-        // variant={operation === "encode" ? "warning" : "success"}
-        // variant="light"
         style={{ backgroundColor: "#c3073f", border: "none" }}
         className="app-button"
         onClick={() => {
@@ -82,30 +82,36 @@ export default function URLTabPanel({
             <Form.Label>
               <h5>{response} URL</h5>
             </Form.Label>
-            <Form.Control
-              style={{ backgroundColor: "white" }}
-              as="textarea"
-              className="textArea-control"
-              rows={7}
-              value={encodeResp}
-              disabled
-            />
+            <br />
+            <span style={{ position: "relative" }}>
+              <Form.Control
+                style={{ backgroundColor: "white", paddingRight: "30px" }}
+                as="textarea"
+                className="textArea-control"
+                rows={10}
+                value={encodeResp}
+                disabled
+              />
+              {textCopied ? (
+                <BsCheck2All className="copiedTextIcon" />
+              ) : (
+                <>
+                  <CopyToClipboard
+                    text={encodeResp}
+                    onCopy={() => setTextCopied(true)}
+                  >
+                    <FaCopy
+                      data-tip="Copy to clipboard"
+                      data-type="light"
+                      data-for="copyURLEncode"
+                      className="copyTextIcon"
+                    />
+                  </CopyToClipboard>
+                  <ReactTooltip id="copyURLEncode" effect="solid" />
+                </>
+              )}
+            </span>
           </Form.Group>
-          {textCopied ? (
-            <Button variant="success">
-              <FaCheck />
-              &nbsp; Copied
-            </Button>
-          ) : (
-            <CopyToClipboard
-              text={encodeResp}
-              onCopy={() => setTextCopied(true)}
-            >
-              <Button variant="light">
-                <FaCopy /> Copy
-              </Button>
-            </CopyToClipboard>
-          )}
 
           <br />
           <br />

@@ -1,9 +1,11 @@
 import "../App.css";
 import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
-import { FaCopy, FaCheck } from "react-icons/fa";
+import { FaCopy } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { alphaNumeric, randomAlphaNumeric } from "../lib/util";
+import { BsCheck2All } from "react-icons/bs";
+import ReactTooltip from "react-tooltip";
 
 export default function RandomString() {
   const [alphaNumericText, setAlphaNumeric] = useState(alphaNumeric());
@@ -55,7 +57,7 @@ export default function RandomString() {
         </Form.Group>
       </Form>
       <span className="row justify-content-center width-100">
-        {stringGenerate.submitted ? (
+        {stringGenerate.submitted || maxLengthError ? (
           <>
             {" "}
             <Button
@@ -64,6 +66,7 @@ export default function RandomString() {
                 setAlphaNumeric(alphaNumeric());
                 setRandomStringLength(16);
                 setStringGenerate({ submitted: false });
+                setMaxLengthError(false);
               }}
               className="col-sm-2"
             >
@@ -88,11 +91,14 @@ export default function RandomString() {
               });
             } else {
               setMaxLengthError(true);
+              setStringGenerate({
+                submitted: false,
+              });
             }
           }}
           className="col-sm-2 app-button"
         >
-          Submit
+          Generate
         </Button>{" "}
       </span>
       {stringGenerate.submitted ? (
@@ -107,29 +113,36 @@ export default function RandomString() {
               <Form.Label>
                 <h5>Generated random string</h5>
               </Form.Label>
-              <Form.Control
-                as="textarea"
-                className="textArea-control"
-                rows={10}
-                value={stringGenerate.value}
-              />
+              <br />
+              <span style={{ position: "relative" }}>
+                <Form.Control
+                  as="textarea"
+                  className="textArea-control"
+                  rows={10}
+                  value={stringGenerate.value}
+                  style={{ paddingRight: "30px" }}
+                />
+                {textCopied ? (
+                  <BsCheck2All className="copiedTextIcon" />
+                ) : (
+                  <>
+                    <CopyToClipboard
+                      text={stringGenerate.value}
+                      onCopy={() => setTextCopied(true)}
+                    >
+                      <FaCopy
+                        data-tip="Copy to clipboard"
+                        data-type="light"
+                        data-for="copyRandomString"
+                        className="copyTextIcon"
+                      />
+                    </CopyToClipboard>
+                    <ReactTooltip id="copyRandomString" effect="solid" />
+                  </>
+                )}
+              </span>
             </Form.Group>
           </Form>
-          {textCopied ? (
-            <Button variant="success">
-              <FaCheck />
-              &nbsp; Copied
-            </Button>
-          ) : (
-            <CopyToClipboard
-              text={stringGenerate.value}
-              onCopy={() => setTextCopied(true)}
-            >
-              <Button variant="light">
-                <FaCopy /> Copy
-              </Button>
-            </CopyToClipboard>
-          )}
         </>
       ) : null}
       {maxLengthError ? (

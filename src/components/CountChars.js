@@ -69,7 +69,7 @@ export default function CountChars() {
                 setCharactersForCount("");
               }}
             >
-              Clear out
+              Clear
             </Button>
           </>
         ) : null}

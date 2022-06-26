@@ -103,3 +103,23 @@ li.nav-item > button:hover {
 .number-font {
   font-family: Optima, sans-serif;
 }
+
+.appTitleFooter a:hover {
+  border-bottom: 3px solid white;
+}
+
+.copyTextIcon {
+  cursor: pointer;
+  position: absolute;
+  color: black;
+  top: 10px;
+  right: 25px;
+}
+
+.copiedTextIcon {
+  position: absolute;
+  color: green;
+  top: 10px;
+  right: 25px;
+}
+

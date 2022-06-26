@@ -63,7 +63,7 @@ export default function CountWords() {
                 setWordsForCount("");
               }}
             >
-              Clear out
+              Clear
             </Button>
           </>
         ) : null}

@@ -5,6 +5,8 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FaCopy, FaCheck } from "react-icons/fa";
 import { GrRefresh } from "react-icons/gr";
 import { v4 as uuidv4 } from "uuid";
+import { BsCheck2All } from "react-icons/bs";
+import ReactTooltip from "react-tooltip";
 
 export default function UUIDGenerator() {
   const [displayUUID, setUUID] = useState(uuidv4());
@@ -142,7 +144,30 @@ export default function UUIDGenerator() {
         <>
           <h5>
             Generated <span className="number-font">{customIDs.value}</span>{" "}
-            UUIDs
+            UUIDs &nbsp;&nbsp;&nbsp;
+            {multipleUUIDCopied ? (
+              <BsCheck2All
+                style={{
+                  color: "green",
+                }}
+              />
+            ) : (
+              <>
+                <CopyToClipboard text={randomIDsToGenerate}>
+                  {/* <Button onClick={() => setMultipleUUIDSCopied(true)} variant="light"> */}
+                  <FaCopy
+                    data-tip="Copy to clipboard"
+                    data-type="light"
+                    data-for="copyUUIDS"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setMultipleUUIDSCopied(true)}
+                  />
+                  {/* &nbsp; Copy */}
+                  {/* </Button> */}
+                </CopyToClipboard>
+                <ReactTooltip id="copyUUIDS" effect="solid" />
+              </>
+            )}
           </h5>
           <div className="number-font generatedUUIDs">
             {randomIDsToGenerate.map((uuid) => (
@@ -154,7 +179,7 @@ export default function UUIDGenerator() {
           </div>
           <br />
           {/* Copy custom UUIDs generated */}
-          {multipleUUIDCopied ? (
+          {/* {multipleUUIDCopied ? (
             <Button
               onClick={() => setMultipleUUIDSCopied(true)}
               variant="success"
@@ -172,7 +197,7 @@ export default function UUIDGenerator() {
                 &nbsp; Copy
               </Button>
             </CopyToClipboard>
-          )}
+          )} */}
         </>
       ) : null}
       {customIDs.numberIsOne ? <h5>One UUID can be found above 😊</h5> : null}
