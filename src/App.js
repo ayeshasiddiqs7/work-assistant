@@ -12,6 +12,18 @@ import RandomString from "./components/RandomString";
 import FadeIn from "react-fade-in";
 
 function App() {
+  React.useEffect(() => {
+  var _mtm = window._mtm = window._mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='https://cdn.matomo.cloud/workassistantvercelapp.matomo.cloud/container_FGtGCj7j.js'; s.parentNode.insertBefore(g,s);
+    }, [])
+
+    return (
+        <div>
+            <h1>Hello World</h1>
+        </div>
+    )
   let encodePanel = (
     <TabPanel
       operation="encode"
